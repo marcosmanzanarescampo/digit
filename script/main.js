@@ -1,52 +1,141 @@
 const tableNumberOfCases = 30;
-const numCartesMain = 4;
+const numCartesMain = 5;
 let selectedCard = 1;
-const numCardsJeu = 4;
+const numCardsJeu = 55
+
+let points = 10; //number initial de points!
+const pointsGagnés = 5;
+const pointsPerdus = 2;
+const pointsPerdusSiPioche = 3;
+const pointsPerdusSiTimeOut = 1;
+
+ const maxGameTime = 30; //30 seconds pour réflechir!
+ let gameTime = maxGameTime;
+
+let main = [];
+let chrono = null;
+
+const TakeCardNumber = function(str){
+  const cardNumber = parseInt(str.substring(str.lastIndexOf('/')+1, str.lastIndexOf('.')));
+  
+  return cardNumber;
+}
+
+const getCardPosition = function(str){  
+  const cardPosition = str.substring(str.indexOf('n')+1);
+
+  return cardPosition-1;
+}
+
+const removeCardMain = function(card){
+  card.remove();
+}
+
+const showPoints = function(){
+  const pointsBox = document.querySelector('.points');
+  
+  pointsBox.innerText = points;
+}
+
+
+const createCard = function(){
+  const numCard = generateCard();
+  const card = document.createElement('img');
+
+  card.src = `assets/${numCard}.jpg`;
+  card.id = `main${main.length + 1}`;
+  
+  card.className = 'card';
+  card.addEventListener("click", (event) => {    
+    const cardImage = event.target.src;
+
+    // console.log(`extraction de la position de la chaine: ${event.target.id}`);    
+    const cardPosition = getCardPosition(event.target.id);  
+    // console.log(`position réuperée: ${cardPosition}`);
+    
+    const number = TakeCardNumber(cardImage);
+
+    // const validationCarte = getNeighbours(selectedCard).includes(parseInt(number));  
+    const validationCarte = true;
+
+    if (validationCarte) {      
+        // c'est une reusite
+        //incrementer les points...
+        points += pointsGagnés;
+        showPoints();
+        // on actualise le carte à jouer        
+        selectedCard = number;
+        drawFigure(number);
+        // on remplace la carte par une autre carte de la pioche
+        console.log(`eliminando la tarjeta: ${event.target.className}`);             
+        removeCardMain(event.target);
+        // tester si l'on a plus de cartes dans la main pour finir le jeu
+        if(document.querySelector('.cardContainer').firstChild === null){
+          // you win!
+          document.querySelector('.cardContainer').classList.toggle("UWin");
+          //la pioche disparait
+          document.querySelector("#pioche").classList.toggle('hidden');
+          // le chrono s'arrête
+          clearTimeout(chrono);
+        }; 
+    } else {
+        // C'est une défaite
+        // console.log("c'est une défaite!");
+        // décrementer les points...
+        points -= pointsPerdus;
+        showPoints();
+    }
+  });
+  
+  return card;
+}
 
 const commencerMain = function () {
-  const main1 = document.querySelector("#main1");
-  const main2 = document.querySelector("#main2");
-  const main3 = document.querySelector("#main3");
-  const main4 = document.querySelector("#main4");
+  const cardContainer = document.querySelector('.cardContainer');
 
-  const main = [main1, main2, main3, main4];
+  cardContainer.innerHTML = '';
 
   for (let index = 0; index < numCartesMain; index++) {
-    main[index].style.backgroundImage = `url('assets/${index + 1}.jpg')`;
-    // on utilise la propieté alt pour stocker la carte monstrée
-    main[index].alt = index + 1;
-    main[index].addEventListener("click", (event) => {
-      if (getNeighbours(selectedCard).includes(parseInt(event.target.alt))) {
-        // c'est une reusite
-        console.log("reusite");
-        selectedCard = event.target.alt;
-        drawFigure(parseInt(event.target.alt));
+    const card = createCard();
 
-        // updateCard();
-      } else {
-        // C'est une défaite
-        console.log("échoué");
-      }
-    });
+    main.push(card);
+    cardContainer.append(card);
   }
 };
 
 const piocher = function () {
-  updateCard();
+  return generateCard();
 };
+
+const timer = function timer(){
+  const timerContainer = document.querySelector('.timerContainer');
+
+  timerContainer.innerText = gameTime;
+
+  if(gameTime === 0){
+    points -= pointsPerdusSiTimeOut;
+    showPoints();
+    gameTime = maxGameTime;
+  }else{
+    gameTime -= 1;
+  } 
+
+  if (gameTime<=5){
+      timerContainer.classList.toggle('timeOut');
+  }
+}
 
 const init = function () {
   const divShow = document.querySelector(".divShow");
   const card = document.querySelector(".structureCarte");
   const imageContainer = document.querySelector(".imageCarte");
+  const timerContainer = document.querySelector('.timerContainer');
   const image = document.createElement("img");
   const root = document.documentElement; // Sélectionne l'élément racine
   const computedStyle = getComputedStyle(root); // Obtient les styles calculés
   const caseWidth = computedStyle.getPropertyValue("--caseWidth").trim(); // Récupère la variable CSS
   const caseHeight = computedStyle.getPropertyValue("--caseHeight").trim(); // Récupère la variable CSS
   const pioche = document.querySelector("#pioche");
-
-  // console.log("init");
 
   for (let index = 0; index < tableNumberOfCases; index++) {
     const cardCell = document.createElement("canvas");
@@ -61,15 +150,28 @@ const init = function () {
   }
   image.id = "image";
   imageContainer.append(image);
+  showPoints();
 
   commencerMain();
-  piocher();
+  setGameCard();
 
-  pioche.addEventListener("click", piocher);
+  pioche.addEventListener("click", event => {
+    addCard(generateCard());
+    points -= pointsPerdusSiPioche;
+    showPoints();
+  });
+  timerContainer.innerText = gameTime;
+  chrono = setInterval(timer, 1000);
 };
 
-const getCard = function (c) {
-  return carte[c].structure;
+const setGameCard = function(){
+  const gameCard = generateCard();
+  selectedCard = gameCard;
+  drawFigure(gameCard);
+}
+
+const getCard = function (c) {  
+  return carte[c].structure;  
 };
 
 const getNeighbours = function (c) {
@@ -80,16 +182,21 @@ const getImage = function (c) {
   return carte[c].image;
 };
 
-const updateCard = function () {
-  const newCard = Math.floor(Math.random() * numCardsJeu) + 1;
 
-  selectedCard = newCard;
-  drawFigure(newCard);
+const generateCard = function (){
+  return Math.floor(Math.random() * numCardsJeu) + 1;
+};
+
+const addCard = function (c) {
+  const cardContainer = document.querySelector('.cardContainer');
+  
+  cardContainer.append(createCard());  
 };
 
 const drawFigure = function (carte) {
   const cardDesign = getCard(carte);
   const image = document.querySelector("#image");
+  
   image.src = "assets/" + getImage(carte);
 
   const segmentColor = getComputedStyle(root)
@@ -145,5 +252,7 @@ const drawFigure = function (carte) {
 };
 
 // Entrée ppal.
-
+// console.log('start');
 init();
+// drawFigure(47);
+// console.log('end');
