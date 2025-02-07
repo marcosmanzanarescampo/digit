@@ -126,7 +126,7 @@ const carte = {
       "A",
       "A",
     ],
-    voisins: [1, 3, 4],
+    voisins: [1, 3, 4, 19, 33, 34, 39],
   },
   3: {
     image: "3.jpg",
@@ -162,7 +162,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [1, 2, 4],
+    voisins: [1, 2, 4, 28, 39],
   },
   4: {
     image: "4.jpg",
@@ -198,7 +198,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [1, 2, 3],
+    voisins: [1, 2, 3, 37],
   },
   5: {
     image: "5.jpg",
@@ -270,7 +270,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [10, 11, 13, 15, 17, 20, 21, 22, 27, ],
   },
   7: {
     image: "7.jpg",
@@ -306,7 +306,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [8, 14, 18, 34, 36],
   },
   8: {
     image: "8.jpg",
@@ -342,7 +342,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [14, 18, 26, 32],
   },
   9: {
     image: "9.jpg",
@@ -378,7 +378,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [10, 16, 22, 26, 30, 31, 33, 34, 39, 41, 53, 54],
   },
   10: {
     image: "10.jpg",
@@ -414,7 +414,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [24, 4, 53],
   },
   11: {
     image: "11.jpg",
@@ -450,7 +450,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [13, 1724, 30, 31, 44, 50],
   },
   12: {
     image: "12.jpg",
@@ -486,7 +486,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [4, 19, 28, 37, 39, 40, 45, 47, 52],
   },
   13: {
     image: "13.jpg",
@@ -522,7 +522,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 6, 10, 11, 19, 29, 43, 54],
   },
   14: {
     image: "14.jpg",
@@ -558,7 +558,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [20, 21, 22, 26, 27, 37, 46, 52],
   },
   15: {
     image: "15.jpg",
@@ -594,7 +594,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 26, 33, 34],
   },
   16: {
     image: "16.jpg",
@@ -630,7 +630,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [26, 33, 34, 39, 54],
   },
   17: {
     image: "17.jpg",
@@ -666,7 +666,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [11, 13, 31, 36, 44, 55],
   },
   18: {
     image: "18.jpg",
@@ -702,7 +702,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [8, 11, 14, 17, 28, 32, 36, 39, 40, 42, 43],
   },
   19: {
     image: "19.jpg",
@@ -738,7 +738,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [3, 4, 5, 10, 12, 13, 47],
   },
   20: {
     image: "20.jpg",
@@ -774,7 +774,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [21, 5],
+    voisins: [2, 5, 6, 9, 10, 15, 21, 27, 33, 46, 53],
   },
   21: {
     image: "21.jpg",
@@ -810,7 +810,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [20, 5],
+    voisins: [5, 6, 20, 21, 27, 37, 46],
   },
   22: {
     image: "22.jpg",
@@ -846,7 +846,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 9, 21, 30, 31, 37, 41, 46],
   },
   23: {
     image: "23.jpg",
@@ -882,7 +882,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [18, 25, 35, 36],
   },
   24: {
     image: "24.jpg",
@@ -918,7 +918,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [3, 4, 5, 10, 11, 19, 28, 38, 39, 44, 47, 52, 53, 55],
   },
   25: {
     image: "25.jpg",
@@ -1026,7 +1026,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 20],
   },
   28: {
     image: "28.jpg",
@@ -1062,7 +1062,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [3, 39, 47],
   },
   29: {
     image: "29.jpg",
@@ -1134,7 +1134,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [9],
   },
   31: {
     image: "31.jpg",
@@ -1170,7 +1170,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [22],
   },
   32: {
     image: "32.jpg",
@@ -1242,7 +1242,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [34],
   },
   34: {
     image: "34.jpg",
@@ -1278,7 +1278,7 @@ const carte = {
       "Bs",
       "",
     ],
-    voisins: [],
+    voisins: [33],
   },
   35: {
     image: "35.jpg",
@@ -1422,7 +1422,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 55],
   },
   39: {
     image: "39.jpg",
@@ -1458,7 +1458,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [3, 28],
   },
   40: {
     image: "40.jpg",
@@ -1494,7 +1494,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 43],
   },
   41: {
     image: "41.jpg",
@@ -1602,7 +1602,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 40],
   },
   44: {
     image: "44.jpg",
@@ -1746,7 +1746,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [],
+    voisins: [19, 28],
   },
   48: {
     image: "48.jpg",
@@ -2035,7 +2035,7 @@ const carte = {
       "",
       "",
     ],
-    voisins: [5],
+    voisins: [5, 38],
   },
   };
   
