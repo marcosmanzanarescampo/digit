@@ -146,8 +146,9 @@ const mettreCarteDansLaPioche = function(card){
   // on vide la pioche
   pioche = [];
   // on stock dans la pioche le nouveau élement + la pioche précédente
-  console.log(pioche);  
-  pioche.push(card, avant);
+  console.log(avant);  
+  console.log(card);
+  pioche.push(card,...avant);
   console.log(pioche);
 };
 
@@ -160,7 +161,7 @@ const createCard = function(){
   card.src = `assets/${numCard}.jpg`;
   card.id = 'main';
 
-  console.log(`main: ${numCard}`);
+  // console.log(`main: ${numCard}`);
   
   card.className = 'mainCard';
   card.addEventListener("click", (event) => {    
@@ -169,6 +170,8 @@ const createCard = function(){
     const number = TakeCardNumber(cardImage);
 
     const validationCarte = getNeighbours(selectedCard).includes(parseInt(number));
+    console.log(getNeighbours(selectedCard).includes(parseInt(number)));
+
 
     // test: 
     
@@ -177,6 +180,8 @@ const createCard = function(){
     if (validationCarte) {      
         // c'est une reusite
         //incrementer les points...
+        console.log("hola");
+        
         points += pointsGagnés;
         showPoints();
         // on remet la carte précendete dans la pioche
@@ -310,7 +315,7 @@ const setGameCard = function(card){
   selectedCard = gameCard;
   image.src = "assets/" + getImage(gameCard);
   drawFigure(gameCard);
-  console.log(`selected card: ${gameCard}`);
+  // console.log(`selected card: ${gameCard}`);
   
 }
 
@@ -389,3 +394,4 @@ const drawFigure = function (carte) {
 // Entrée ppal.
 createGame();
 init();
+// drawFigure(10);
